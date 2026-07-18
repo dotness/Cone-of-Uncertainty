@@ -77,6 +77,16 @@ For an extensive explanation of this synergy and practical workflows, please ref
 
 ---
 
+## 5. Cynefin Framework Integration
+
+Before applying the highly analytical approach of the Inverted Cone, organizations must evaluate whether the current technological landscape is predictable enough to do so. This is achieved by integrating the **Cynefin Framework**.
+
+The Cynefin Framework acts as a "sense-making" pre-flight check. It categorizes problems into domains (Clear, Complicated, Complex, Chaotic). The Cone of Uncertainty works best in the "Complicated" domain. In "Complex" or "Chaotic" environments, organizations must suspend backward-planning and rely on probing and sensing to discover emergent rules before the Cone can be safely applied.
+
+For an extensive explanation of how to use Cynefin to validate your use of the Cone, please refer to the dedicated guide: **[Integrating the Cynefin Framework to Improve Cone of Uncertainty Operations](CYNEFIN_CONE_INTEGRATION.md)**.
+
+---
+
 ## Conclusion
 The Cone of Uncertainty transforms the overwhelming unpredictability of the future into a structured, active analytical method. By shifting focus from predicting a highly uncertain future (the Traditional Cone) to working backward from a desired or hypothesized end state (the Inverted Cone), IT Architects and Strategists can systematically eliminate irrelevant options, identify critical milestones, and confidently navigate complex technological transformations and volatile markets like the AI Ecosystem.
 
