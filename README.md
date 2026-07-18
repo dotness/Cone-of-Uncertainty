@@ -73,7 +73,7 @@ To effectively navigate between the Node Points established by the Inverted Cone
 
 While the Cone provides the macro-level map and filters out deceptive paths, the OODA Loop provides the engine for rapid iteration and hypothesis testing. By systematically executing OODA loops, teams can validate their trajectory, avoid "False Cones," and adapt to market volatility in real-time without losing sight of the Long Term Vision.
 
-For an extensive explanation of this synergy and practical workflows, please refer to the dedicated guide: **[Integrating the OODA Loop to Improve Cone of Uncertainty Operations](OODA_CONE_INTEGRATION.md)**.
+For an extensive explanation of this synergy and practical workflows, please refer to the dedicated guide: **[Integrating the OODA Loop to Improve Cone of Uncertainty Operations](docs/OODA_CONE_INTEGRATION.md)**.
 
 ---
 
@@ -83,7 +83,7 @@ Before applying the highly analytical approach of the Inverted Cone, organizatio
 
 The Cynefin Framework acts as a "sense-making" pre-flight check. It categorizes problems into domains (Clear, Complicated, Complex, Chaotic). The Cone of Uncertainty works best in the "Complicated" domain. In "Complex" or "Chaotic" environments, organizations must suspend backward-planning and rely on probing and sensing to discover emergent rules before the Cone can be safely applied.
 
-For an extensive explanation of how to use Cynefin to validate your use of the Cone, please refer to the dedicated guide: **[Integrating the Cynefin Framework to Improve Cone of Uncertainty Operations](CYNEFIN_CONE_INTEGRATION.md)**.
+For an extensive explanation of how to use Cynefin to validate your use of the Cone, please refer to the dedicated guide: **[Integrating the Cynefin Framework to Improve Cone of Uncertainty Operations](docs/CYNEFIN_CONE_INTEGRATION.md)**.
 
 ---
 
