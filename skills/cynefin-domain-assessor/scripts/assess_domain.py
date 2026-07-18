@@ -3,7 +3,7 @@ import sqlite3
 import json
 import os
 
-DB_PATH = 'cynefin.db'
+DB_PATH = os.path.join(os.path.dirname(__file__), 'cynefin.db')
 VALID_DOMAINS = ["Clear", "Complicated", "Complex", "Chaotic"]
 
 def init_db():

@@ -15,12 +15,12 @@ Goal: Categorize the current technological landscape or architectural problem in
 
 2. **Domain Classification & Logging**:
    - Classify the problem into one of the four primary Cynefin domains using the script:
-     `python scripts/assess_domain.py --action log_assessment --name "<problem name>" --domain "<Clear|Complicated|Complex|Chaotic>" --reason "<justification>"`
+     `python skills/cynefin-domain-assessor/scripts/assess_domain.py --action log_assessment --name "<problem name>" --domain "<Clear|Complicated|Complex|Chaotic>" --reason "<justification>"`
    - Add details (e.g., specific technologies involved, metrics) in JSON using the `--metadata` flag.
 
 3. **Applying the Methodology**:
    - Read the assessments before applying the Cone of Uncertainty:
-     `python scripts/assess_domain.py --action get_assessments`
+     `python skills/cynefin-domain-assessor/scripts/assess_domain.py --action get_assessments`
    - **Rule of Thumb**:
      - **Clear**: Minimal application. Execute standard operating procedures. Do not over-engineer the Cone.
      - **Complicated**: Full Analytical Application. Build the Inverted Cone, define LTV, and identify Node Points.
