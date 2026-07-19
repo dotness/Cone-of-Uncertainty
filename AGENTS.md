@@ -2,6 +2,42 @@
 
 These rules apply to all AI agents working within this repository.
 
+## Cone of Uncertainty and Long Term Vision (LTV) Rules
+
+- **The Traditional Cone**: Represents the rapidly multiplying possibilities from the current system architecture ("AS-IS" state) over time. It demonstrates the impossibility of predicting a single forward path.
+- **The Inverted Cone (Reversed Cone)**: Start from a defined End State or Long Term Vision ("TO-BE" state) and work backward to eliminate paths that do not lead to the goal. This reduces uncertainty and identifies required steps.
+- **Node Points**: Identify inevitable convergence points on the timeline that the system must pass through to achieve the vision (e.g., critical technological gateways).
+- **False Cones**: Be vigilant of deliberate deceptive actions or technological "hype." Distinguish genuine evolution from corporate marketing noise to avoid paths that diverge from the desired state.
+
+## LTV Cone Manager Rules
+
+- **Purpose**: Creates and updates the Long Term Vision (LTV) and Cone of Uncertainty models in the SQLite database (`ltv_database.db`).
+- **Scripts**: Always use `manage_cone.py` located in `skills/ltv-cone-manager/scripts/` to interact with the database. Do not modify the database manually.
+- **Actions**:
+  - `get_vision`: Read current AS-IS and TO-BE states before creating new models.
+  - `set_vision`: Save new AS-IS or TO-BE states.
+  - `add_path`: Add new paths with status "hypothetical".
+  - `update_path_status`: Change status to "aligned" (leads to goal) or "eliminated" (does not lead to goal).
+- **Visualization**: Generate a summary (or diagram) for the user after any modifications by using `--action get_all_paths`.
+
+## Node Point Adder Rules
+
+- **Purpose**: Identify and log critical milestones or gateways (Node Points) on the Inverted Cone timeline.
+- **Scripts**: Use `add_node.py` located in `skills/node-point-adder/scripts/` to manage Node Points in the database.
+- **Actions**:
+  - `add_node`: Save new Node Points with specific timestamps/stages and ensure names are unique.
+  - `get_nodes`: List current Node Points.
+- **Integration**: Always update the model representation (e.g., LTV diagram) after adding a point. Consider using the LTV Cone Manager's `get_vision` beforehand for context.
+
+## False Cone Detector Rules
+
+- **Purpose**: Detect and filter out technological hype or "false cones," and persistently log them to protect the LTV model.
+- **Scripts**: Use `log_false_cone.py` located in `skills/false-cone-detector/scripts/`.
+- **Actions**:
+  - `log_cone`: Log a rejected trend with a specific reason for rejection based on objective cross-analysis.
+  - `get_cones`: List identified false cones to prevent repeating mistakes when adding new technologies.
+- **Evaluation**: Assessments must rely on verifiable data fusion, comparing new trends directly against the target TO-BE goal.
+
 ## Cynefin Domain Assessor Rules
 
 - Before applying any backward planning or Inverted Cone methodology, you must classify the environment using the Cynefin Domain Assessor skill.
