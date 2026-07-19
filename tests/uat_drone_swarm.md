@@ -22,36 +22,37 @@ Design and create a system that manages a drone swarm. This scenario will valida
 
 ### Step 2: Establish the Vision (LTV Cone Manager)
 **Skill:** `ltv-cone-manager`
-**Action:** Define the AS-IS (manual control or basic formations) and TO-BE (fully autonomous, self-healing, adaptive drone swarm).
-**Expected Command:**
-```bash
-python skills/ltv-cone-manager/scripts/manage_cone.py --action set_vision --as_is "Manual piloting of individual drones or rigid pre-programmed formations." --to_be "Fully autonomous, self-healing drone swarm capable of decentralized decision-making."
-```
+**Action:** Define the current state (AS-IS) and desired future state (TO-BE) of the drone swarm.
+**Expected Actions:**
+1. Formulate a logical AS-IS state representing basic manual control or rigid formations.
+2. Formulate a logical TO-BE state representing a fully autonomous, self-healing, adaptive swarm.
+3. Use the `ltv-cone-manager` to set this vision.
+
+*(Note: Exact CLI commands are intentionally omitted here to ensure the executing agent organically researches and generates the vision data rather than hardcoding it).*
+
 **Validation:** Check vision using `--action get_vision`.
 
 ### Step 3: Create Traditional Cone Paths
 **Skill:** `ltv-cone-manager`
-**Action:** Add hypothetical paths from AS-IS towards TO-BE.
-**Expected Commands:**
-```bash
-python skills/ltv-cone-manager/scripts/manage_cone.py --action add_path --name "Centralized Cloud Control" --description "All drones stream data to a central cloud server for real-time control." --status "hypothetical"
+**Action:** Hypothesize at least three different paths to transition from AS-IS to TO-BE.
+**Expected Actions:**
+1. Define a centralized path (e.g. cloud control).
+2. Define a decentralized path (e.g. edge AI and mesh networking).
+3. Define a highly futuristic, likely unfeasible path (e.g. quantum communication).
+4. Use the `ltv-cone-manager` to add these paths as `hypothetical`.
 
-python skills/ltv-cone-manager/scripts/manage_cone.py --action add_path --name "Decentralized Edge AI" --description "Drones process data locally and share state via mesh network." --status "hypothetical"
-
-python skills/ltv-cone-manager/scripts/manage_cone.py --action add_path --name "Quantum Telepathy Comm" --description "Instantaneous communication using quantum entanglement for zero-latency control." --status "hypothetical"
-```
+*(Note: Exact CLI commands are intentionally omitted here to ensure the executing agent organically researches and generates the path data rather than hardcoding it).*
 
 ### Step 4: Detect False Cone
 **Skill:** `false-cone-detector`
-**Action:** Reject the "Quantum Telepathy Comm" path as a false cone due to being technological hype not viable for current LTV.
-**Expected Command:**
-```bash
-python skills/false-cone-detector/scripts/log_false_cone.py --action log_cone --name "Quantum Telepathy Comm" --reason "Technological hype: viable quantum entanglement communication for drones is not feasible within the planning horizon."
-```
-**Validation:** Update path status to eliminated using `ltv-cone-manager` and verify false cone log using `--action get_cones`.
-```bash
-python skills/ltv-cone-manager/scripts/manage_cone.py --action update_path_status --name "Quantum Telepathy Comm" --status "eliminated"
-```
+**Action:** Identify the unfeasible futuristic path created in Step 3 and formally reject it as a false cone.
+**Expected Actions:**
+1. Use the `false-cone-detector` to log the futuristic path as a false cone, providing a solid rationale (e.g., technological hype, beyond planning horizon).
+2. Use the `ltv-cone-manager` to update the rejected path's status from `hypothetical` to `eliminated`.
+
+*(Note: Exact CLI commands are intentionally omitted here to ensure the executing agent organically researches and derives the logical execution rather than hardcoding it).*
+
+**Validation:** Verify false cone log using `--action get_cones` and verify path status update.
 
 ### Step 5: Build Reversed Cone (Identify Node Points and Sub-paths)
 **Skill:** `node-point-adder` and `ltv-cone-manager`
