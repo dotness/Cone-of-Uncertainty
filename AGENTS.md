@@ -2,6 +2,12 @@
 
 These rules apply to all AI agents working within this repository.
 
+## Versioning Rules
+
+- **Check Version**: All AI agents must check the repository version upon initialization or when checking for updates.
+- **VERSION File**: The current version of the repository is stored in the `VERSION` file located in the root directory.
+- **Action**: Always read the `VERSION` file to determine if you have the latest version or are operating within the correct major/minor release context (e.g., v2).
+
 ## Cone of Uncertainty and Long Term Vision (LTV) Rules
 
 - **The Traditional Cone**: Represents the rapidly multiplying possibilities from the current system architecture ("AS-IS" state) over time. It demonstrates the impossibility of predicting a single forward path.
@@ -18,7 +24,7 @@ These rules apply to all AI agents working within this repository.
   - `set_vision`: Save new AS-IS or TO-BE states.
   - `add_path`: Add new paths with status "hypothetical".
   - `update_path_status`: Change status to "aligned" (leads to goal) or "eliminated" (does not lead to goal).
-- **Visualization**: Generate a summary (or diagram) for the user after any modifications by using `--action get_all_paths`.
+- **Visualization**: Generate a summary for the user after modifications. Generating visual HTML diagrams (via test scripts) is optional and primarily intended for UATs; do not run HTML generation automatically after every change unless explicitly requested.
 
 ## Node Point Adder Rules
 
@@ -27,7 +33,7 @@ These rules apply to all AI agents working within this repository.
 - **Actions**:
   - `add_node`: Save new Node Points with specific timestamps/stages and ensure names are unique.
   - `get_nodes`: List current Node Points.
-- **Integration**: Always update the model representation (e.g., LTV diagram) after adding a point. Consider using the LTV Cone Manager's `get_vision` beforehand for context.
+- **Integration**: Consider using the LTV Cone Manager's `get_vision` beforehand for context. Updating visual model representations (e.g., generating HTML diagrams) is optional and intended mainly for UATs.
 
 ## False Cone Detector Rules
 
