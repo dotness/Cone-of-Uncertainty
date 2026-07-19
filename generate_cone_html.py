@@ -166,36 +166,61 @@ def generate_html(data):
         """
 
     # SVG Visual representation
+    paths = data.get('paths', [])
+    nodes = data.get('nodes', [])
+
     html += """
             <div class="cone-visual">
                 <h2>Visual representation</h2>
-                <svg width="100%" height="250" viewBox="0 0 600 250" xmlns="http://www.w3.org/2000/svg">
+                <svg width="100%" height="300" viewBox="0 0 600 300" xmlns="http://www.w3.org/2000/svg">
                     <!-- Cone Background -->
-                    <path d="M 50 125 L 550 20 L 550 230 Z" fill="#eef2f3" stroke="#bdc3c7" stroke-width="2"/>
+                    <path d="M 50 150 L 550 20 L 550 280 Z" fill="#eef2f3" stroke="#bdc3c7" stroke-width="2"/>
 
                     <!-- AS IS point -->
-                    <circle cx="50" cy="125" r="8" fill="#34495e"/>
-                    <text x="50" y="150" font-family="sans-serif" font-size="12" text-anchor="middle" font-weight="bold">AS-IS</text>
+                    <circle cx="50" cy="150" r="8" fill="#34495e"/>
+                    <text x="50" y="175" font-family="sans-serif" font-size="12" text-anchor="middle" font-weight="bold">AS-IS</text>
 
                     <!-- TO BE point -->
-                    <circle cx="550" cy="125" r="10" fill="#2ecc71"/>
-                    <text x="550" y="150" font-family="sans-serif" font-size="14" text-anchor="middle" font-weight="bold" fill="#2ecc71">TO-BE</text>
+                    <circle cx="550" cy="150" r="10" fill="#2ecc71"/>
+                    <text x="550" y="175" font-family="sans-serif" font-size="14" text-anchor="middle" font-weight="bold" fill="#2ecc71">TO-BE</text>
+    """
 
-                    <!-- Aligned Path (Center) -->
-                    <line x1="50" y1="125" x2="550" y2="125" stroke="#2ecc71" stroke-width="3" stroke-dasharray="5,5" />
+    # Dynamically draw paths
+    # We will spread them out. Aligned goes straight to TO-BE.
+    # Hypothetical and eliminated paths angle up or down.
 
-                    <!-- Other hypothetical paths -->
-                    <line x1="50" y1="125" x2="500" y2="50" stroke="#f39c12" stroke-width="2" stroke-dasharray="3,3" />
-                    <line x1="50" y1="125" x2="480" y2="200" stroke="#e74c3c" stroke-width="2" />
+    y_offsets = [-80, 80, -40, 40, -100, 100]
+    path_idx = 0
 
-                    <!-- Example Node Points on Aligned path -->
-                    <circle cx="200" cy="125" r="6" fill="#8e44ad"/>
-                    <text x="200" y="110" font-family="sans-serif" font-size="10" text-anchor="middle">Node 1</text>
+    for p in paths:
+        status = p.get('status', 'hypothetical').lower()
+        if status == 'aligned':
+            html += f'<!-- Aligned Path (Center) -->\n'
+            html += f'<line x1="50" y1="150" x2="550" y2="150" stroke="#2ecc71" stroke-width="3" stroke-dasharray="5,5" />\n'
+            html += f'<text x="300" y="145" font-family="sans-serif" font-size="10" text-anchor="middle" fill="#2ecc71">{p.get("name")}</text>\n'
+        else:
+            color = "#e74c3c" if status == "eliminated" else "#f39c12"
+            y_end = 150 + y_offsets[path_idx % len(y_offsets)]
+            dash = "" if status == "eliminated" else 'stroke-dasharray="3,3"'
+            html += f'<line x1="50" y1="150" x2="480" y2="{y_end}" stroke="{color}" stroke-width="2" {dash} />\n'
+            html += f'<text x="300" y="{150 + (y_end - 150)/2 - 5}" font-family="sans-serif" font-size="10" text-anchor="middle" fill="{color}">{p.get("name")}</text>\n'
+            path_idx += 1
 
-                    <circle cx="350" cy="125" r="6" fill="#8e44ad"/>
-                    <text x="350" y="110" font-family="sans-serif" font-size="10" text-anchor="middle">Node 2</text>
+    # Dynamically draw nodes on the aligned path
+    if nodes:
+        spacing = 500 / (len(nodes) + 1)
+        for i, n in enumerate(nodes):
+            cx = 50 + (i + 1) * spacing
+            html += f'<!-- Node Point {i+1} -->\n'
+            html += f'<circle cx="{cx}" cy="150" r="6" fill="#8e44ad"/>\n'
+            html += f'<text x="{cx}" y="135" font-family="sans-serif" font-size="10" text-anchor="middle" fill="#8e44ad">{n.get("name")}</text>\n'
+
+            # Draw reversed cone visually originating from node
+            html += f'<path d="M {cx} 150 L {cx-40} 120 L {cx-40} 180 Z" fill="rgba(142, 68, 173, 0.1)" stroke="#8e44ad" stroke-width="1" stroke-dasharray="2,2"/>\n'
+
+    html += """
                 </svg>
-                <p style="font-size: 0.8em; color: #7f8c8d; margin-top: 10px;">Diagram: Representation of the LTV Cone from AS-IS to TO-BE, showing aligned (green), hypothetical (orange), and eliminated (red) paths with backward-planned nodes.</p>
+                <p style="font-size: 0.8em; color: #7f8c8d; margin-top: 10px;">Diagram: Representation of the LTV Cone from AS-IS to TO-BE, showing aligned (green), hypothetical (orange), and eliminated (red) paths with backward-planned nodes and their associated reversed cones (purple triangles).</p>
             </div>
     """
 

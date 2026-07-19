@@ -50,16 +50,30 @@ python skills/false-cone-detector/scripts/log_false_cone.py --action log_cone --
 python skills/ltv-cone-manager/scripts/manage_cone.py --action update_path_status --name "Quantum Telepathy Comm" --status "eliminated"
 ```
 
-### Step 5: Build Reversed Cone (Identify Node Points)
-**Skill:** `node-point-adder`
-**Action:** Working backward from the TO-BE state, identify critical milestones (Node Points) on the "Decentralized Edge AI" path and align it.
+### Step 5: Build Reversed Cone (Identify Node Points and Sub-paths)
+**Skill:** `node-point-adder` and `ltv-cone-manager`
+**Action:** Working backward from the TO-BE state, identify critical milestones (Node Points) on the "Decentralized Edge AI" path and align it. For each node, simulate reversed cones by analyzing rejected alternative ways to reach them.
 **Expected Commands:**
 ```bash
 python skills/ltv-cone-manager/scripts/manage_cone.py --action update_path_status --name "Decentralized Edge AI" --status "aligned"
 
+# Node 1: Mesh Network Validation
 python skills/node-point-adder/scripts/add_node.py --action add_node --name "Mesh Network Validation" --description "Drones successfully share basic telemetry over a local mesh." --timestamp "Q3 2024"
+python skills/ltv-cone-manager/scripts/manage_cone.py --action add_path --name "Laser Mesh Comm" --description "Line of sight laser comms for high bandwidth mesh." --status "hypothetical"
+python skills/false-cone-detector/scripts/log_false_cone.py --action log_cone --name "Laser Mesh Comm" --reason "Too sensitive to environmental factors like fog and smoke."
+python skills/ltv-cone-manager/scripts/manage_cone.py --action update_path_status --name "Laser Mesh Comm" --status "eliminated"
 
+# Node 2: Local Collision Avoidance
 python skills/node-point-adder/scripts/add_node.py --action add_node --name "Local Collision Avoidance" --description "Drones avoid each other using onboard sensors and edge compute." --timestamp "Q1 2025"
+python skills/ltv-cone-manager/scripts/manage_cone.py --action add_path --name "Sonar Avoidance" --description "Using active sonar for object detection." --status "hypothetical"
+python skills/false-cone-detector/scripts/log_false_cone.py --action log_cone --name "Sonar Avoidance" --reason "Acoustic interference from drone rotors renders it useless."
+python skills/ltv-cone-manager/scripts/manage_cone.py --action update_path_status --name "Sonar Avoidance" --status "eliminated"
+
+# Node 3: Swarm Self-Healing
+python skills/node-point-adder/scripts/add_node.py --action add_node --name "Swarm Self-Healing" --description "Swarm autonomously reconfigures when a drone fails." --timestamp "Q4 2025"
+python skills/ltv-cone-manager/scripts/manage_cone.py --action add_path --name "Physical Drone Merging" --description "Broken drones physically attach to working ones to combine compute." --status "hypothetical"
+python skills/false-cone-detector/scripts/log_false_cone.py --action log_cone --name "Physical Drone Merging" --reason "Mechanically too complex and drastically reduces flight time."
+python skills/ltv-cone-manager/scripts/manage_cone.py --action update_path_status --name "Physical Drone Merging" --status "eliminated"
 ```
 **Validation:** Verify nodes with `--action get_nodes`.
 
@@ -85,8 +99,16 @@ python skills/ooda-loop-navigator/scripts/navigate_ooda.py --action log_action -
 ```
 **Validation:** Verify OODA loop with `--action get_loops --target_node "Mesh Network Validation"`.
 
+### Step 7: Generate HTML Report
+**Action:** Generate the visual Cone HTML directly as part of the UAT suite.
+**Expected Command:**
+```bash
+python3 generate_cone_html.py
+```
+
 ## Final Validation
 - All tools execute successfully.
 - LTV database represents the AS-IS, TO-BE, eliminated false cone, aligned valid path, and defined node points.
 - OODA navigation history shows logical progression towards the first node point.
 - The entire process demonstrates the creation of both the traditional cone (expanding possibilities) and the reversed cone (narrowing down from the goal via node points).
+- The `cone_representation.html` file is generated and visualizes the complete landscape including all rejected paths.
