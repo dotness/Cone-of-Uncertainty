@@ -53,28 +53,14 @@ python skills/ltv-cone-manager/scripts/manage_cone.py --action update_path_statu
 ### Step 5: Build Reversed Cone (Identify Node Points and Sub-paths)
 **Skill:** `node-point-adder` and `ltv-cone-manager`
 **Action:** Working backward from the TO-BE state, identify critical milestones (Node Points) on the "Decentralized Edge AI" path and align it. For each node, simulate reversed cones by analyzing rejected alternative ways to reach them.
-**Expected Commands:**
-```bash
-python skills/ltv-cone-manager/scripts/manage_cone.py --action update_path_status --name "Decentralized Edge AI" --status "aligned"
+**Expected Actions:**
+1. Update the status of the chosen primary path to `aligned` using `ltv-cone-manager`.
+2. Define at least three conceptual Node Points along this path using the `node-point-adder` skill. Do not use hardcoded data; derive logical milestones from the TO-BE vision.
+3. For **each** Node Point, simulate a "reversed cone" by hypothesizing at least one alternative sub-path that could theoretically achieve that node. Add it as `hypothetical`.
+4. Use the `false-cone-detector` to evaluate and reject that alternative sub-path with a logical reason, and then update its status to `eliminated`.
 
-# Node 1: Mesh Network Validation
-python skills/node-point-adder/scripts/add_node.py --action add_node --name "Mesh Network Validation" --description "Drones successfully share basic telemetry over a local mesh." --timestamp "Q3 2024"
-python skills/ltv-cone-manager/scripts/manage_cone.py --action add_path --name "Laser Mesh Comm" --description "Line of sight laser comms for high bandwidth mesh." --status "hypothetical"
-python skills/false-cone-detector/scripts/log_false_cone.py --action log_cone --name "Laser Mesh Comm" --reason "Too sensitive to environmental factors like fog and smoke."
-python skills/ltv-cone-manager/scripts/manage_cone.py --action update_path_status --name "Laser Mesh Comm" --status "eliminated"
+*(Note: Exact CLI commands are intentionally omitted here to ensure the executing agent organically researches and generates the node data rather than hardcoding it).*
 
-# Node 2: Local Collision Avoidance
-python skills/node-point-adder/scripts/add_node.py --action add_node --name "Local Collision Avoidance" --description "Drones avoid each other using onboard sensors and edge compute." --timestamp "Q1 2025"
-python skills/ltv-cone-manager/scripts/manage_cone.py --action add_path --name "Sonar Avoidance" --description "Using active sonar for object detection." --status "hypothetical"
-python skills/false-cone-detector/scripts/log_false_cone.py --action log_cone --name "Sonar Avoidance" --reason "Acoustic interference from drone rotors renders it useless."
-python skills/ltv-cone-manager/scripts/manage_cone.py --action update_path_status --name "Sonar Avoidance" --status "eliminated"
-
-# Node 3: Swarm Self-Healing
-python skills/node-point-adder/scripts/add_node.py --action add_node --name "Swarm Self-Healing" --description "Swarm autonomously reconfigures when a drone fails." --timestamp "Q4 2025"
-python skills/ltv-cone-manager/scripts/manage_cone.py --action add_path --name "Physical Drone Merging" --description "Broken drones physically attach to working ones to combine compute." --status "hypothetical"
-python skills/false-cone-detector/scripts/log_false_cone.py --action log_cone --name "Physical Drone Merging" --reason "Mechanically too complex and drastically reduces flight time."
-python skills/ltv-cone-manager/scripts/manage_cone.py --action update_path_status --name "Physical Drone Merging" --status "eliminated"
-```
 **Validation:** Verify nodes with `--action get_nodes`.
 
 ### Step 6: Navigate via OODA Loop
