@@ -1,3 +1,13 @@
+"""
+TEST SCRIPT: generate_cone_html.py
+===================================
+NOTE: This script is intended purely for User Acceptance Testing (UAT) purposes.
+It dynamically parses local SQLite test databases to generate a visual HTML report
+of the Cone of Uncertainty (including reversed cones) used in the UAT process.
+It should not be used as part of the core production framework to generate
+real-world cones without adaptation.
+"""
+
 import sqlite3
 import json
 
@@ -337,9 +347,13 @@ def generate_html(data):
     </html>
     """
 
-    with open('cone_representation.html', 'w', encoding='utf-8') as f:
+    import os
+    os.makedirs('tests/example_results', exist_ok=True)
+    out_path = 'tests/example_results/cone_representation.html'
+
+    with open(out_path, 'w', encoding='utf-8') as f:
         f.write(html)
-    print("Successfully generated cone_representation.html")
+    print(f"Successfully generated {out_path}")
 
 if __name__ == "__main__":
     db_data = fetch_data()

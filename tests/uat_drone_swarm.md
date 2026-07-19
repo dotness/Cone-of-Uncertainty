@@ -103,7 +103,7 @@ python skills/ooda-loop-navigator/scripts/navigate_ooda.py --action log_action -
 **Action:** Generate the visual Cone HTML directly as part of the UAT suite.
 **Expected Command:**
 ```bash
-python3 generate_cone_html.py
+python3 tests/generate_cone_html.py
 ```
 
 ## Final Validation
