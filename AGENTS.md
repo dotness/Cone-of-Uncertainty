@@ -2,6 +2,12 @@
 
 These rules apply to all AI agents working within this repository.
 
+## Versioning Rules
+
+- **Check Version**: All AI agents must check the repository version upon initialization or when checking for updates.
+- **VERSION File**: The current version of the repository is stored in the `VERSION` file located in the root directory.
+- **Action**: Always read the `VERSION` file to determine if you have the latest version or are operating within the correct major/minor release context (e.g., v2).
+
 ## Cone of Uncertainty and Long Term Vision (LTV) Rules
 
 - **The Traditional Cone**: Represents the rapidly multiplying possibilities from the current system architecture ("AS-IS" state) over time. It demonstrates the impossibility of predicting a single forward path.
