@@ -10,11 +10,14 @@ Design and create a system that manages a drone swarm. This scenario will valida
 
 ### Step 1: Cynefin Domain Assessment
 **Skill:** `cynefin-domain-assessor`
-**Action:** Assess the domain for the drone swarm management system. Given the dynamic and partially unpredictable nature of drone swarms interacting with weather and physical environments, classify it as "Complicated".
-**Expected Command:**
-```bash
-python skills/cynefin-domain-assessor/scripts/assess_domain.py --action log_assessment --name "Drone Swarm Management" --domain "Complicated" --reason "Multi-agent coordination in dynamic environments requires advanced analytics and LTV planning."
-```
+**Action:** Assess the domain for the drone swarm management system. Given the dynamic and partially unpredictable nature of drone swarms interacting with weather and physical environments, classify it appropriately.
+**Expected Actions:**
+1. Use the `cynefin-domain-assessor` skill to log an assessment for "Drone Swarm Management".
+2. Determine the correct domain (e.g. "Complicated") based on the problem description.
+3. Provide a logical reason for the classification.
+
+*(Note: Exact CLI commands are intentionally omitted here to ensure the executing agent organically researches and generates the assessment data rather than hardcoding it).*
+
 **Validation:** Verify the assessment is logged using `--action get_assessments`.
 
 ### Step 2: Establish the Vision (LTV Cone Manager)
@@ -65,25 +68,17 @@ python skills/ltv-cone-manager/scripts/manage_cone.py --action update_path_statu
 
 ### Step 6: Navigate via OODA Loop
 **Skill:** `ooda-loop-navigator`
-**Action:** Use micro-level execution to reach the first Node Point ("Mesh Network Validation").
-**Expected Commands:**
-- **Observe:**
-```bash
-python skills/ooda-loop-navigator/scripts/navigate_ooda.py --action log_observation --target_node "Mesh Network Validation" --observation "Standard Wi-Fi loses connection beyond 100 meters outdoors."
-```
-- **Orient:**
-```bash
-python skills/ooda-loop-navigator/scripts/navigate_ooda.py --action log_orientation --observation_id 1 --analysis "Wi-Fi is insufficient. We need a specialized protocol like LoRa or specialized mesh." --anomaly_detected True
-```
-- **Decide:**
-```bash
-python skills/ooda-loop-navigator/scripts/navigate_ooda.py --action log_decision --observation_id 1 --hypothesis "Implementing a 900MHz mesh protocol will extend range to 1km." --action_plan "Deploy 3 drones with 900MHz transceivers and measure ping success rate."
-```
-- **Act:**
-```bash
-python skills/ooda-loop-navigator/scripts/navigate_ooda.py --action log_action --observation_id 1 --outcome "900MHz modules successfully maintained 95% ping success rate at 800m distance."
-```
-**Validation:** Verify OODA loop with `--action get_loops --target_node "Mesh Network Validation"`.
+**Action:** Use micro-level execution to navigate towards the first Node Point you created.
+**Expected Actions:**
+1. Choose the first chronological Node Point (e.g., related to network validation).
+2. **Observe:** Log a simulated observation regarding an initial challenge in reaching this node.
+3. **Orient:** Log an orientation analysis based on that observation, optionally flagging an anomaly.
+4. **Decide:** Formulate a hypothesis and action plan to overcome the challenge.
+5. **Act:** Log the simulated outcome of that action, completing the loop.
+
+*(Note: Exact CLI commands are intentionally omitted here to ensure the executing agent organically researches and generates the loop data rather than hardcoding it).*
+
+**Validation:** Verify OODA loop with `--action get_loops` targeting your specific node point.
 
 ### Step 7: Generate HTML Report
 **Action:** Generate the visual Cone HTML directly as part of the UAT suite.
