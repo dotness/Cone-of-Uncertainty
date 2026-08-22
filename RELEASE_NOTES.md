@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.1.0] - 2026-08-22
+
+### Added
+- Added `ltv-reversed-cone-builder` skill to automate iterative deep web research and build reversed cones for LTV nodes (#10).
+
 ## [2.0.0] - 2026-07-19
 
 ### Added
